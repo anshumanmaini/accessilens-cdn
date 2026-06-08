@@ -525,6 +525,25 @@ TEXT: "${document.body.innerText.substring(0,4e3)}"`;await Xe(D,"simplify")},[Xe
                                 unicode-bidi: isolate !important;
                             }
 
+                            /* WordPress and Common Grid/Theme Fixes */
+                            body[dir="rtl"] header#top nav > ul.buttons,
+                            body[dir="rtl"] #header-outer #top nav > ul.buttons {
+                                float: left !important;
+                                left: 0 !important;
+                                right: auto !important;
+                            }
+                            body[dir="rtl"] .nectar-header-text-content a:first-child {
+                                margin-right: 0 !important;
+                                margin-left: 15px !important;
+                            }
+                            body[dir="rtl"] #footer-outer h3.wp-block-heading::after,
+                            body[dir="rtl"] #footer-outer .widget h3::after,
+                            body[dir="rtl"] #footer-outer .widget h4::after {
+                                left: auto !important;
+                                right: 0 !important;
+                            }
+
+
                             /* ── HARDENED WIDGET EXCLUSION ── */
                             #accessilens-ai-widget-host,
                             #accessilens-ai-widget-host * {
