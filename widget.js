@@ -537,21 +537,26 @@ TEXT: "${document.body.innerText.substring(0,4e3)}"`;await Xe(D,"simplify")},[Xe
                             }
 
                             /* 2. Generic Carousels & Sliders (Safe Inner content) */
-                            /* Force structural sliders back to LTR so JS positioning works */
+                            /* Prevent the structural wrappers and tracks of ANY carousel from becoming RTL */
                             body[dir="rtl"] .carousel,
                             body[dir="rtl"] [class*="carousel"],
                             body[dir="rtl"] .slider,
                             body[dir="rtl"] [class*="slider"],
                             body[dir="rtl"] .swiper,
                             body[dir="rtl"] .swiper-container,
+                            body[dir="rtl"] .swiper-wrapper,
                             body[dir="rtl"] .slick-slider,
+                            body[dir="rtl"] .slick-list,
+                            body[dir="rtl"] .slick-track,
                             body[dir="rtl"] .owl-carousel,
+                            body[dir="rtl"] .owl-stage-outer,
+                            body[dir="rtl"] .owl-stage,
                             body[dir="rtl"] .flickity-enabled,
                             body[dir="rtl"] .flickity-viewport,
                             body[dir="rtl"] .flickity-slider {
                                 direction: ltr !important;
                             }
-                            /* But keep the inner text and content RTL */
+                            /* Safely apply RTL to all inner contents of the carousels */
                             body[dir="rtl"] .carousel *,
                             body[dir="rtl"] [class*="carousel"] *,
                             body[dir="rtl"] .slider *,
@@ -562,10 +567,13 @@ TEXT: "${document.body.innerText.substring(0,4e3)}"`;await Xe(D,"simplify")},[Xe
                             body[dir="rtl"] .flickity-enabled * {
                                 direction: rtl;
                             }
-                            /* Protect common tracks/wrappers that must remain LTR */
+                            /* Re-protect structural tracks just in case the generic * overwrote them */
+                            body[dir="rtl"] .slick-list,
                             body[dir="rtl"] .slick-track,
                             body[dir="rtl"] .swiper-wrapper,
+                            body[dir="rtl"] .owl-stage-outer,
                             body[dir="rtl"] .owl-stage,
+                            body[dir="rtl"] .flickity-viewport,
                             body[dir="rtl"] .flickity-slider {
                                 direction: ltr !important;
                             }
